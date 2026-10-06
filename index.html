@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Sermon MCQs Test</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eef8f1,#f7fbf8);color:#1f2937}
+.container{width:min(900px,94%);margin:30px auto}
+.app-header{background:linear-gradient(135deg,#087f5b,#0b6b4d);color:#fff;padding:30px 22px;border-radius:18px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.12);margin-bottom:22px}
+.badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:7px 13px;border-radius:999px;font-size:13px;margin-bottom:12px}
+h1{margin:5px 0 12px;font-size:clamp(28px,5vw,42px)}
+.subtitle{margin:0;font-size:17px;line-height:1.6}
+.quiz-card{background:#fff;border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 6px 18px rgba(0,0,0,.08);border:1px solid #e5eee9}
+.question-number{color:#087f5b;font-weight:bold;margin-bottom:8px;font-size:14px}
+.question{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:16px}
+.option{display:block;padding:13px 15px;margin:10px 0;border:1px solid #d7e2dc;border-radius:10px;cursor:pointer;background:#fbfdfc}
+.option:hover{border-color:#087f5b;background:#f0faf5}
+.option input{margin-right:9px;accent-color:#087f5b}
+.correct{background:#dff6e8!important;border-color:#2e9d62!important;color:#155d35;font-weight:600}
+.wrong{background:#ffe1e1!important;border-color:#d9534f!important;color:#8a1f1f;font-weight:600}
+.actions{text-align:center;margin:25px 0}
+button{border:none;border-radius:10px;padding:14px 25px;font-size:16px;font-weight:bold;cursor:pointer;margin:5px}
+#submitBtn{background:#087f5b;color:white}
+#resetBtn{background:#e9efec;color:#24352d}
+.result{display:none;text-align:center;background:#fff;padding:25px;border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,.08);margin-bottom:25px}
+.score{font-size:34px;font-weight:bold;color:#087f5b;margin:8px 0}
+.footer{text-align:center;color:#64746c;font-size:13px;padding:10px 0 25px}
+@media(max-width:600px){.container{width:94%;margin:16px auto}.app-header{padding:24px 15px}.quiz-card{padding:18px}.question{font-size:16px}.subtitle{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="app-header">
+<span class="badge">✦ Class 9th</span>
+<h1>The Last Sermon MCQs Test</h1>
+<p class="subtitle">Class 9th The Last Sermon of the Holy Prophet (S.A.W)<br>by Sarfaraz Ahmed (Total 20 Questions)</p>
+</header>
+<main id="quiz"></main>
+<div class="actions">
+<button id="submitBtn" onclick="submitQuiz()">Submit Test</button>
+<button id="resetBtn" onclick="resetQuiz()">Reset</button>
+</div>
+<section class="result" id="result">
+<h2>Test Result</h2><div class="score" id="score"></div><p id="message"></p>
+</section>
+<div class="footer">The Last Sermon MCQs Test • Class 9th • by Sarfaraz Ahmed</div>
+</div>
+
+<script>
+const quizData=[
+{q:"The Holy Prophet (S.A.W) was the last of all ______.",options:["Messengers","Prophets","Kings","Leaders"],answer:1},
+{q:"The Holy Prophet (S.A.W) delivered the Last Sermon at ______.",options:["Madinah","Taif","Makkah","Yathrib"],answer:2},
+{q:"Before Islam, the people of Makkah worshipped ______.",options:["Angels","The sun","Idols","Kings"],answer:2},
+{q:"The Holy Prophet (S.A.W) invited the people to ______.",options:["Follow the Quraish","Worship many gods","Accept Islam and worship the One true God","Leave Makkah"],answer:2},
+{q:"What was the old name of Madinah?",options:["Makkah","Taif","Yathrib","Arafat"],answer:2},
+{q:"Madinah was also called ______.",options:["Madinat-ul-Arab","Madinat-un-Nabi","Madinat-ul-Quraish","Madinat-ul-Islam"],answer:1},
+{q:"What does Madinat-un-Nabi mean?",options:["City of Islam","City of Muslims","City of the Prophet","City of Peace"],answer:2},
+{q:"The migration of the Holy Prophet (S.A.W) from Makkah to Madinah is called ______.",options:["Jihad","Hijra","Zakat","Hajj"],answer:1},
+{q:"Which document was prepared in Madinah to establish peace and cooperation?",options:["The Constitution of Madina","The Treaty of Makkah","The Charter of Arafat","The Pact of Taif"],answer:0},
+{q:"The Constitution of Madinah established relations between ______.",options:["Arabs and Persians","Muslims and Jews","Quraish and Romans","Muslims and Romans"],answer:1},
+{q:"The Last Sermon was delivered in ______.",options:["1 A.H.","5 A.H.","8 A.H.","10 A.H."],answer:3},
+{q:"The Holy Prophet (S.A.W) delivered the Last Sermon in the valley of ______.",options:["Mount Uhud","Mount Safa","Mount Arafat","Mount Hira"],answer:2},
+{q:"The Last Sermon was delivered on ______.",options:["1st Muharram","12th Rabi-ul-Awwal","9th Dhul-Hijjah","27th Ramadan"],answer:2},
+{q:"According to the Last Sermon, the lives and properties of Muslims are ______.",options:["A sacred trust","Unimportant","Public property","Only for leaders"],answer:0},
+{q:"The Holy Prophet (S.A.W) specially emphasized the rights of ______.",options:["Kings","Women","Traders","Soldiers"],answer:1},
+{q:"The Holy Prophet (S.A.W) stated that all human beings were created from ______.",options:["Fire","Light","Dust","Water"],answer:2},
+{q:"According to the Last Sermon, the best person is ______.",options:["The richest person","The strongest person","The most God-fearing person","The most powerful person"],answer:2},
+{q:"According to the Last Sermon, an Arab has no superiority over a ______.",options:["Quraish","Non-Arab","King","Leader"],answer:1},
+{q:"The Holy Prophet (S.A.W) declared that every Muslim is the ______ of another Muslim.",options:["Enemy","Brother","Teacher","Ruler"],answer:1},
+{q:"At the end of the Last Sermon, the Holy Prophet (S.A.W) asked the people to ______.",options:["Leave Makkah immediately","Build a new city","Be his witness that he had conveyed His message","Fight the Quraish"],answer:2}
+];
+
+const quiz=document.getElementById("quiz");
+
+function renderQuiz(){
+quiz.innerHTML="";
+quizData.forEach((item,index)=>{
+const card=document.createElement("section");
+card.className="quiz-card";
+card.innerHTML='<div class="question-number">Question '+(index+1)+' of '+quizData.length+'</div><div class="question">'+item.q+'</div>';
+item.options.forEach((option,i)=>{
+const label=document.createElement("label");
+label.className="option";
+label.dataset.question=index;
+label.dataset.option=i;
+label.innerHTML='<input type="radio" name="q'+index+'" value="'+i+'"> '+String.fromCharCode(65+i)+'. '+option;
+card.appendChild(label);
+});
+quiz.appendChild(card);
+});
+}
+
+function submitQuiz(){
+let score=0;
+quizData.forEach((item,index)=>{
+const selected=document.querySelector('input[name="q'+index+'"]:checked');
+const labels=document.querySelectorAll('[data-question="'+index+'"]');
+labels.forEach(label=>{if(Number(label.dataset.option)===item.answer)label.classList.add("correct")});
+if(selected){
+const selectedIndex=Number(selected.value);
+if(selectedIndex===item.answer)score++;
+else{
+const wrong=document.querySelector('[data-question="'+index+'"][data-option="'+selectedIndex+'"]');
+if(wrong)wrong.classList.add("wrong");
+}
+}
+});
+const result=document.getElementById("result");
+document.getElementById("score").textContent=score+" / "+quizData.length;
+const p=score/quizData.length*100;
+document.getElementById("message").textContent=p===100?"Excellent! 🎉 You got all answers correct.":p>=80?"Very Good! 👍 Keep it up.":p>=60?"Good effort! 📚 Keep practicing.":"Keep studying and try again. 💪";
+result.style.display="block";
+result.scrollIntoView({behavior:"smooth",block:"center"});
+document.querySelectorAll("input[type='radio']").forEach(x=>x.disabled=true);
+document.getElementById("submitBtn").disabled=true;
+}
+
+function resetQuiz(){
+renderQuiz();
+document.getElementById("result").style.display="none";
+document.getElementById("submitBtn").disabled=false;
+window.scrollTo({top:0,behavior:"smooth"});
+}
+renderQuiz();
+</script>
+</body>
+</html>
